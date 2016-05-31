@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <h4>Seu Perfil</h4>
+    <div class="panel panel-default">
+        <div class="panel-heading">Nome</div>
+        <div class="panel-body">{{ m.user.first_name }} {{ m.user.last_name }} </div>
+        <div class="panel-heading">E-mail</div>
+        <div class="panel-body">{{ m.user.email }} </div>
+        <div class="panel-heading">CPF</div>
+        <div class="panel-body">{{ m.cpf }} </div>
+        <div class="panel-heading">Tipo de Inscrição</div>
+        <div class="panel-body">{{ m.get_tipo_de_inscricao_display }} </div>
+    </div>
+    <h4>Inscrição confirmada?</h4>
+
+</div>
+{% endblock content %}

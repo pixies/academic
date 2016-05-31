@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    {% if user.is_authenticated %}
+
+    {% else %}
+        <a href="/register/">Faça sua inscrição</a>
+    {% endif %}
+
+
+{% endblock content %}
+
+
