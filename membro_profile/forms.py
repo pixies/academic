@@ -16,8 +16,8 @@ class MembroProfileForm(forms.ModelForm):
         fields = ('cpf','tipo_de_inscricao','avatar')
 
 class EditProfileForm(forms.ModelForm):
-    first_name = forms.CharField(label="First Name")
-    last_name = forms.CharField(label="Last Name")
+    first_name = forms.CharField(label="Primeiro nome")
+    last_name = forms.CharField(label="Segundo nome")
     cpf = forms.CharField(label="CPF")
 
     class Meta:
