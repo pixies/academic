@@ -1,8 +1,8 @@
 #-*- encoding: utf-8 -*-
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
-from django.shortcuts import render_to_response, RequestContext
-from membro_profile.forms import MembroForm, MembroProfileForm
+from django.shortcuts import render_to_response, RequestContext, render
+from membro_profile.forms import MembroForm, MembroProfileForm, EditProfileForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from membro_profile.models import MembroProfile
@@ -91,9 +91,35 @@ def profile(request):
     else:
         return HttpResponse('Inscrição não encontrado')
 
+from django.core.urlresolvers import reverse
 
+@login_required
+def edit_profile(request):
+    membro = request.user
+    form = EditProfileForm(
+        request.POST or None,
+        initial={
+            'first_name': membro.first_name,
+            'last_name': membro.last_name,
+            'cpf': membro.membroprofile.cpf,
+        }
+    )
+
+    if form.is_valid():
+        membro.first_name = request.POST['first_name']
+        membro.last_name = request.POST['last_name']
+        membro.cpf = request.POST['cpf']
+
+        membro.save()
+        return HttpResponseRedirect('%s'%(reverse('profile')))
+
+    context = {
+        "form": form
+    }
+
+    return render(request, 'profile/editar.html', context)
 
 def index(request):
     context = RequestContext(request)
-    #return render_to_response('profile/index.html', context)
-    return HttpResponseRedirect('/register/')
+    return render_to_response('profile/index.html', context)
+    #return HttpResponseRedirect('/register/')

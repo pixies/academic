@@ -12,6 +12,7 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^login/$', views.membro_login, name='login'),
     url(r'^register/$', views.register, name='register'),
-    url(r'^profile/', views.profile, name='profile'),
+    url(r'^profile/$', views.profile, name='profile'),
+    url(r'^profile/edit/$', views.edit_profile, name='edit_profile'),
     url(r'^logout/$', views.user_logout, name='logout'),
 )

@@ -41,8 +41,9 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         {% if user.is_authenticated %}
             <ul class="nav navbar-nav navbar-right">
-                <li class="active"><a href="/profile/">Perfil<span class="sr-only">(current)</span></a></li>
-                <li><a href="/logout/">Sair</a></li>
+                <li><a href="/profile/">Perfil<span class="sr-only">(current)</span></a></li>
+                <li><a href="/profile/edit/">Editar<span class="sr-only">(current)</span></a></li>
+                <li class="active"><a href="/logout/">Sair</a></li>
             </ul>
         {% else %}
             <ul class="nav navbar-nav navbar-right">

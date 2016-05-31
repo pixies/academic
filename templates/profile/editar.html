@@ -1,10 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "base.html" %}
 
-</body>
-</html>
+{% block content %}
+<div class="container">
+    <div class="jumbotron">
+        <div class="container">
+            <div class="input-group input-group-sm">
+            <form method="POST" action="{% url 'edit_profile' %}" class="" enctype="multipart/form-data">
+            {% csrf_token %}
+                {{ form.as_p }}
+                                    {{ membro_form.as_p }}
+                    {{ membro_profile_form.as_p }}
+
+                <button type="submit">Save</button>
+            </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+
+
