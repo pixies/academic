@@ -2,24 +2,32 @@
 
 {% block content %}
 
-
 <div class="container">
+
+    {% if user.is_authenticated %}
+        <h1>Ola, <strong>{{ membro.membroprofile }}</strong></h1>
+        <div class="jumbotron">
+          <p>O Status da sua inscrição é <string><i>{{ membro.membroprofile.status_inscricao }}</i></string></p>
+          <p>Aguarde!</p>
+          <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
+        </div>
+    {% else %}
     <div class="row">
         <div class="col-lg-3"></div>
         <div class="col-lg-3">
-                        <form class="form-horizontal" id="membro_form" method="post" action="/login/">{% csrf_token %}
-        <h3 class="form-signin-heading">Entre com seu usuário.</h3>
-        <label for="inputUser" class="sr-only">Entre com seu usuário</label>
-        <input type="text" id="inputUser" class="form-control" name="username" placeholder="Usuário" required autofocus>
-        <label for="inputSenha" class="sr-only">Senha</label>
-        <input type="password" id="inputSenha" class="form-control" placeholder="Sua senha" name="password" required>
-        <div class="checkbox">
-          <label>
-            <input type="checkbox" value="remember-me"> Lembre-me
-          </label>
-        </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
-      </form>
+            <form class="form-horizontal" id="membro_form" method="post" action="/login/">{% csrf_token %}
+                <h3 class="form-signin-heading">Entre com seu usuário.</h3>
+                <label for="inputUser" class="sr-only">Entre com seu usuário</label>
+                <input type="text" id="inputUser" class="form-control" name="username" placeholder="Usuário" required autofocus>
+                <label for="inputSenha" class="sr-only">Senha</label>
+                <input type="password" id="inputSenha" class="form-control" placeholder="Sua senha" name="password" required>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" value="remember-me"> Lembre-me
+                  </label>
+                </div>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
+            </form>
         </div>
         <div class="col-lg-3">
             <h3 class="form-signin-heading">Ainda não fez sua inscrição?</h3>
@@ -27,6 +35,8 @@
         </div>
         <div class="col-lg-3"></div>
     </div>
+
+    {% endif %}
 
 
 {% endblock content %}

@@ -13,7 +13,7 @@ class MembroForm(forms.ModelForm):
 class MembroProfileForm(forms.ModelForm):
     class Meta:
         model = MembroProfile
-        fields = ('cpf','tipo_de_inscricao','avatar')
+        fields = ('cpf','tipo_de_inscricao','avatar','status_inscricao')
 
 class EditProfileForm(forms.ModelForm):
     first_name = forms.CharField(label="Primeiro nome")

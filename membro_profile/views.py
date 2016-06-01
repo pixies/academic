@@ -119,7 +119,16 @@ def edit_profile(request):
 
     return render(request, 'profile/editar.html', context)
 
+
 def index(request):
+    membro = 'AnonymousUser'
     context = RequestContext(request)
-    return render_to_response('profile/index.html', context)
-    #return HttpResponseRedirect('/register/')
+    if request.user.is_authenticated():
+        membro = MembroProfile.objects.filter(user__username=request.user).latest('user').user
+        context["membro"] = membro
+        return render_to_response('profile/index.html', context)
+
+    else:
+        context["membro"] = membro
+        return render_to_response('profile/index.html', context)
+        #return HttpResponseRedirect('/register/')

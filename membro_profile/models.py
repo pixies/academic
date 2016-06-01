@@ -24,6 +24,16 @@ class MembroProfile(models.Model):
                                      choices=TIPO_DE_INSCRICAO,
                                      default='estudante')
 
+    STATUS_DE_INSCRICAO = (
+        ('ativo', 'Ativo'),
+        ('inativo', 'Inativo'),
+    )
+
+    status_inscricao = models.CharField('Status', max_length=11,
+                                         choices=STATUS_DE_INSCRICAO,
+                                         default='inativo',
+                                         blank=True,
+                                        )
 
     def __unicode__(self):
         return self.user.first_name
