@@ -7,9 +7,45 @@
     {% if user.is_authenticated %}
         <h1>Ola, <strong>{{ membro.membroprofile }}</strong></h1>
         <div class="jumbotron">
-          <p>O Status da sua inscrição ainda é <strong><i>{{ membro.membroprofile.status_inscricao }}</i></strong></p>
-          <p><a class="btn btn-primary btn-lg" href="#" role="button">Aguarde a liberação dos Resumos</a></p>
+          <p>Sua inscrição está <strong>{{ membro.membroprofile.status_inscricao }}</strong></p>
+          <p>
+              {% if membro.membroprofile.status_inscricao == 'inativo' %}
+              <a class="btn btn-danger btn-lg" href="#" role="button">
+              {{ "Aguarde..." }}
+              </a>
+                  {% else %}
+
+                  {% if submissao %}
+
+                      <table class="table table-striped">
+                            <tr>
+                                <th>Título</th>
+                                <th>Título em Ingles</th>
+                                <th>Área de Interesse</th>
+                                <th>Resumo</th>
+                                <th>Autor</th>
+                            </tr>
+                            <tr>
+                              <td class="info">{{ submissao.titulo }}</td>
+                              <td class="info">{{ submissao.titulo_eng }}</td>
+                              <td class="info">{{ submissao.area }}</td>
+                              <td class="info">{{ submissao.resumo }}</td>
+                              <td class="info"> {{ membro.first_name }} {{ membro.last_name }}</td>
+                            </tr>
+                      </table>
+
+
+                  {% else %}
+                  <a class="btn btn-primary btn-lg" href="/submissao/" role="button">
+              Adcione seu resumo!
+              </a>
+
+                  {% endif %}
+
+            {% endif %}
+          </p>
         </div>
+
     {% else %}
     <div class="row">
         <div class="col-lg-3"></div>

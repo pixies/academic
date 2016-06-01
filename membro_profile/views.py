@@ -61,7 +61,7 @@ def membro_login(request):
         if membro:
             if membro.is_active:
                 login(request, membro)
-                return HttpResponseRedirect('/profile/')
+                return HttpResponseRedirect('/')
             else:
                 return HttpResponse('Sua conta ainda não foi liberada.')
         else:
@@ -119,16 +119,33 @@ def edit_profile(request):
 
     return render(request, 'profile/editar.html', context)
 
+from submissao.models import Submissao
 
 def index(request):
+
     membro = 'AnonymousUser'
     context = RequestContext(request)
     if request.user.is_authenticated():
         membro = MembroProfile.objects.filter(user__username=request.user).latest('user').user
+        usr = MembroProfile.objects.filter(user__username=request.user)
+        submissao = Submissao.objects.filter(autor=usr.first())
+        #print usr.first()
         context["membro"] = membro
-        return render_to_response('profile/index.html', context)
+
+        if membro.membroprofile.status_inscricao == 'inativo':
+            context["submissao"] = 'Aguarde!'
+            return render_to_response('profile/index.html', context)
+        else:
+            if len(submissao.values()) > 0:
+                context["submissao"] = submissao.values()[0]
+                print context
+                return render_to_response('profile/index.html', context)
+            else:
+                context["submissao"] = submissao
+                return render_to_response('profile/index.html', context)
 
     else:
         context["membro"] = membro
+
         return render_to_response('profile/index.html', context)
-        #return HttpResponseRedirect('/register/')
+    #return HttpResponseRedirect('/register/')

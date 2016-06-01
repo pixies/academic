@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 class MembroProfile(models.Model):
     user = models.OneToOneField(User)
     avatar = models.ImageField(upload_to='profile_images', blank=True)
-    cpf = models.CharField(max_length=11, blank=True)
+    cpf = models.CharField(max_length=11, blank=True, unique=True)
 
     data_de_cadastro = models.DateTimeField(auto_now_add=True)
 

@@ -38,6 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'membro_profile',
     'bootstrap3',
+    'submissao',
 )
 
 MIDDLEWARE_CLASSES = (
