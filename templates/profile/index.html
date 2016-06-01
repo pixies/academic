@@ -7,9 +7,8 @@
     {% if user.is_authenticated %}
         <h1>Ola, <strong>{{ membro.membroprofile }}</strong></h1>
         <div class="jumbotron">
-          <p>O Status da sua inscrição é <string><i>{{ membro.membroprofile.status_inscricao }}</i></string></p>
-          <p>Aguarde!</p>
-          <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
+          <p>O Status da sua inscrição ainda é <strong><i>{{ membro.membroprofile.status_inscricao }}</i></strong></p>
+          <p><a class="btn btn-primary btn-lg" href="#" role="button">Aguarde a liberação dos Resumos</a></p>
         </div>
     {% else %}
     <div class="row">
