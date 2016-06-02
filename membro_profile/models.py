@@ -19,8 +19,7 @@ class MembroProfile(models.Model):
         ('profi', 'Profissional'),
         ('profi-socio', 'Profissional Sócio'),
     )
-    tipo_de_inscricao = models.CharField('tipo de inscrição',max_length=11,
-
+    tipo_de_inscricao = models.CharField('tipo de inscrição',max_length=50,
                                      choices=TIPO_DE_INSCRICAO,
                                      default='estudante')
 
