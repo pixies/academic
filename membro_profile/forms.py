@@ -10,10 +10,25 @@ class MembroForm(forms.ModelForm):
         model = User
         fields = ('first_name','last_name','username', 'email','password')
 
+        widgets = {
+            'first_name': forms.TextInput(attrs={'placeholder': 'Ex. Fulano de Tau'}),
+            'last_name': forms.TextInput(attrs={'placeholder': 'Ex. da Silva Sauro'}),
+            'email': forms.TextInput(attrs={'placeholder': 'E-Mail'}),
+            'username': forms.TextInput(attrs={'placeholder': 'username'}),
+            'email': forms.TextInput(attrs={'placeholder': 'E-Mail'}),
+            'password': forms.TextInput(attrs={'placeholder': 'Senha'}),
+        }
+
+
 class MembroProfileForm(forms.ModelForm):
     class Meta:
         model = MembroProfile
-        fields = ('cpf','tipo_de_inscricao','avatar','status_inscricao')
+        fields = ('cpf','tipo_de_inscricao','avatar')
+
+        widgets = {
+            'cpf': forms.TextInput(attrs={'placeholder': 'Use apenas número.'}),
+            'email': forms.TextInput(attrs={'placeholder': 'E-Mail'}),
+        }
 
 class EditProfileForm(forms.ModelForm):
     first_name = forms.CharField(label="Primeiro nome")
