@@ -1,23 +1,18 @@
 {% extends "base.html" %}
-
 {% block content %}
-<div class="container">
+  <div class="container">
     <div class="jumbotron">
-        <div class="container">
-            <div class="input-group input-group-sm">
-            <form method="POST" action="{% url 'edit_profile' %}" class="" enctype="multipart/form-data">
+      <div class="container">
+        <div class="input-group input-group-sm">
+          <form method="POST" action="{% url 'edit_profile' %}" class="" enctype="multipart/form-data">
             {% csrf_token %}
-                {{ form.as_p }}
-                                    {{ membro_form.as_p }}
-                    {{ membro_profile_form.as_p }}
-
-                <button type="submit">Save</button>
-            </form>
-            </div>
+            {{ form.as_p }}
+            {{ membro_form.as_p }}
+            {{ membro_profile_form.as_p }}
+            <button type="submit">Salvar</button>
+          </form>
         </div>
+      </div>
     </div>
-</div>
+  </div>
 {% endblock content %}
-
-
-
