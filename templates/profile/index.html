@@ -5,10 +5,21 @@
 <div class="container">
 
     {% if user.is_authenticated %}
+
         <h1>Ola, <strong>{{ membro.membroprofile }}</strong></h1>
+
+        <h3>
+            {% if membro.membroprofile.status_inscricao == 'inativo' %}
+                Aguarde a confirmação da sua inscrição.
+            {% else %}
+                {% if submissao %}
+                    Aguarde um revisor entrará em contato com você em breve.
+                {% else %}
+                    Você já pode nos enviar se resumo, <strong>tenha um bom trabalho.</strong>
+                {% endif %}
+            {% endif %}
+        </h3>
         <div class="jumbotron">
-          <p>Sua inscrição está <strong>{{ membro.membroprofile.status_inscricao }}</strong></p>
-          <p>
               {% if membro.membroprofile.status_inscricao == 'inativo' %}
               <a class="btn btn-danger btn-lg" href="#" role="button">
               {{ "Aguarde..." }}
