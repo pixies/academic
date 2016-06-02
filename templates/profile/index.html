@@ -1,90 +1,73 @@
 {% extends "base.html" %}
-
 {% block content %}
-
-<div class="container">
-
+  <div class="container">
     {% if user.is_authenticated %}
-
-        <h1>Ola, <strong>{{ membro.membroprofile }}</strong></h1>
-
-        <h3>
-            {% if membro.membroprofile.status_inscricao == 'inativo' %}
-                Aguarde a confirmação da sua inscrição.
-            {% else %}
-                {% if submissao %}
-                    Aguarde um revisor entrará em contato com você em breve.
-                {% else %}
-                    Você já pode nos enviar se resumo, <strong>tenha um bom trabalho.</strong>
-                {% endif %}
-            {% endif %}
-        </h3>
-        <div class="jumbotron">
-              {% if membro.membroprofile.status_inscricao == 'inativo' %}
-              <a class="btn btn-danger btn-lg" href="#" role="button">
-              {{ "Aguarde..." }}
-              </a>
-                  {% else %}
-
-                  {% if submissao %}
-
-                      <table class="table table-striped">
-                            <tr>
-                                <th>Título</th>
-                                <th>Título em Ingles</th>
-                                <th>Área de Interesse</th>
-                                <th>Resumo</th>
-                                <th>Autor</th>
-                            </tr>
-                            <tr>
-                              <td class="info">{{ submissao.titulo }}</td>
-                              <td class="info">{{ submissao.titulo_eng }}</td>
-                              <td class="info">{{ submissao.area }}</td>
-                              <td class="info">{{ submissao.resumo }}</td>
-                              <td class="info"> {{ membro.first_name }} {{ membro.last_name }}</td>
-                            </tr>
-                      </table>
-
-
-                  {% else %}
-                  <a class="btn btn-primary btn-lg" href="/submissao/" role="button">
-              Adcione seu resumo!
-              </a>
-
-                  {% endif %}
-
-            {% endif %}
-          </p>
-        </div>
-
-    {% else %}
-    <div class="row">
-        <div class="col-lg-3"></div>
-        <div class="col-lg-3">
-            <form class="form-horizontal" id="membro_form" method="post" action="/login/">{% csrf_token %}
-                <h3 class="form-signin-heading">Entre com seu usuário.</h3>
-                <label for="inputUser" class="sr-only">Entre com seu usuário</label>
-                <input type="text" id="inputUser" class="form-control" name="username" placeholder="Usuário" required autofocus>
-                <label for="inputSenha" class="sr-only">Senha</label>
-                <input type="password" id="inputSenha" class="form-control" placeholder="Sua senha" name="password" required>
-                <div class="checkbox">
-                  <label>
-                    <input type="checkbox" value="remember-me"> Lembre-me
-                  </label>
-                </div>
-                <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
-            </form>
-        </div>
-        <div class="col-lg-3">
-            <h3 class="form-signin-heading">Ainda não fez sua inscrição?</h3>
-            <a href="/register/"><button class="btn btn-lg btn-alert btn-block" type="submit">Não perca tempo, faça agora.</button></a>
-        </div>
-        <div class="col-lg-3"></div>
+      <h1>Ola, <strong>{{ membro.membroprofile }}</strong></h1>
+      <h3>
+      {% if membro.membroprofile.status_inscricao == 'inativo' %}
+        Aguarde a confirmação da sua inscrição.
+      {% else %}
+        {% if submissao %}
+          Por favor, aguarde um revisor entrar em contato com você para confirmar.
+        {% else %}
+          Você já pode enviar seu resumo. <strong>Bom trabalho!</strong>
+        {% endif %}
+      {% endif %}
+      </h3>
+      <div class="jumbotron">
+        {% if membro.membroprofile.status_inscricao == 'inativo' %}
+          <a class="btn btn-danger btn-lg" href="#" role="button">
+            {{ "Aguarde..." }}
+          </a>
+        {% else %}
+          {% if submissao %}
+            <table class="table table-striped">
+              <tr>
+                <th>Título</th>
+                <th>Título em Inglês</th>
+                <th>Área de Interesse</th>
+                <th>Resumo</th>
+                <th>Autor</th>
+              </tr>
+              <tr>
+                <td class="info">{{ submissao.titulo }}</td>
+                <td class="info">{{ submissao.titulo_eng }}</td>
+                <td class="info">{{ submissao.area }}</td>
+                <td class="info">{{ submissao.resumo }}</td>
+                <td class="info"> {{ membro.first_name }} {{ membro.last_name }}</td>
+              </tr>
+            </table>
+          {% else %}
+            <a class="btn btn-primary btn-lg" href="/submissao/" role="button">
+              Adicione seu resumo
+            </a>
+          {% endif %}
+        {% endif %}
+      </p>
     </div>
-
-    {% endif %}
-
-
+  {% else %}
+    <div class="row">
+      <div class="col-lg-3"></div>
+      <div class="col-lg-3">
+        <form class="form-horizontal" id="membro_form" method="post" action="/login/">{% csrf_token %}
+          <h3 class="form-signin-heading">Entre com seu usuário.</h3>
+          <label for="inputUser" class="sr-only">Entre com seu usuário</label>
+          <input type="text" id="inputUser" class="form-control" name="username" placeholder="Usuário" required autofocus>
+          <label for="inputSenha" class="sr-only">Senha</label>
+          <input type="password" id="inputSenha" class="form-control" placeholder="Sua senha" name="password" required>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value="remember-me"> Lembre-me
+            </label>
+          </div>
+          <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
+        </form>
+      </div>
+      <div class="col-lg-3">
+        <h3 class="form-signin-heading">Ainda não fez sua inscrição?</h3>
+        <a href="/register/"><button class="btn btn-lg btn-alert btn-block" type="submit">Não perca tempo, faça agora.</button></a>
+      </div>
+      <div class="col-lg-3"></div>
+    </div>
+  {% endif %}
 {% endblock content %}
-
-
