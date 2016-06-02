@@ -1,64 +1,55 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="container">
+  <div class="container">
     <div class="jumbotron">
-        <div class="container">
-
+      <div class="container">
         {% if registered %}
-        Ola, <strong>Obrigado por se Registar!</strong>
-        <a href="/">Retorne para pagina inicial</a><br />
+          Ola, <strong>Obrigado pelo registro</strong>
+          <a href="/">Retorne para a página inicial</a><br />
         {% else %}
-            <h3>Ola, <strong>inicie sua incrição aqui!</strong></h3>
-            <div class="input-group input-group-sm">
-                <form id="membro_form" method="post" action="/register/"
-                        enctype="multipart/form-data">
-
-                    {% csrf_token %}
-
-                      <div class="form-group">
-                        <label >Primeiro Nome</label><br/>
-                        {{ membro_form.first_name }}
-                      </div>
-                      <div class="form-group">
-                        <label >Segundo Nome</label><br/>
-                        {{ membro_form.last_name }}
-                      </div>
-                      <div class="form-group">
-                        <label >Usuário</label><br/>
-                        {{ membro_form.username }}
-                        <span class="help-block">Use apenas uma palavra em minusculo.</span>
-                      </div>
-                      <div class="form-group">
-                        <label >E-mail</label><br/>
-                        {{ membro_form.email }}
-                      </div>
-                      <div class="form-group">
-                        <label >Senha</label><br/>
-                        {{ membro_form.password }}
-                      </div>
-                      <div class="form-group">
-                        <label >CPF</label><br/>
-                        {{ membro_profile_form.cpf }}
-                          <span class="help-block">Use apenas número.</span>
-                      </div>
-                      <div class="form-group">
-                        <label >Tipo de Inscrição</label><br/>
-                        {{ membro_profile_form.tipo_de_inscricao }}
-                      </div>
-
-                    <!-- Display each form. The as_p method wraps each element in a paragraph
-                         (<p>) element. This ensures each element appears on a new line,
-                         making everything look neater. -->
-
-                    <!-- Provide a button to click to submit the form. -->
-                    <input type="submit" name="submit" value="Registrar" class="btn btn-default" />
-                </form>
-        {% endif %}
-            </div>
-    </div>
-</div>
-{% endblock content %}
-
-
-
-
+          <h3>Olá, tudo bem? <strong>Inicie sua inscrição aqui!</strong></h3>
+          <div class="input-group input-group-sm">
+            <form id="membro_form" method="post" action="/register/"
+              enctype="multipart/form-data">
+              {% csrf_token %}
+              <div class="form-group">
+                <label >Primeiro Nome</label><br/>
+                {{ membro_form.first_name }}
+              </div>
+              <div class="form-group">
+                <label >Segundo Nome</label><br/>
+                {{ membro_form.last_name }}
+              </div>
+              <div class="form-group">
+                <label >Usuário</label><br/>
+                {{ membro_form.username }}
+                <span class="help-block">Use apenas uma palavra sem acentuação e em minúsculo. Ex.: joaodasilva.</span>
+              </div>
+              <div class="form-group">
+                <label >E-mail</label><br/>
+                {{ membro_form.email }}
+              </div>
+              <div class="form-group">
+                <label >Senha</label><br/>
+                {{ membro_form.password }}
+              </div>
+              <div class="form-group">
+                <label >CPF</label><br/>
+                {{ membro_profile_form.cpf }}
+                <span class="help-block">Use apenas números.</span>
+              </div>
+              <div class="form-group">
+                <label >Tipo de Inscrição</label><br/>
+                {{ membro_profile_form.tipo_de_inscricao }}
+              </div>
+              <!-- Display each form. The as_p method wraps each element in a paragraph
+              (<p>) element. This ensures each element appears on a new line,
+                making everything look neater. -->
+                <!-- Provide a button to click to submit the form. -->
+                <input type="submit" name="submit" value="Registrar" class="btn btn-default" />
+              </form>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    {% endblock content %}
