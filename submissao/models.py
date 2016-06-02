@@ -34,7 +34,7 @@ class Submissao(models.Model):
     )
 
     status_do_resumo = models.CharField(
-        'Aguandando revisão', max_length=1,
+        'Status do Resumo', max_length=1,
         choices=ESCOLHA_STATUS,
         default='0',
         blank=True,
