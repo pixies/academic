@@ -25,5 +25,20 @@ class Submissao(models.Model):
         blank=False,
     )
 
+    ESCOLHA_STATUS = (
+        ('0', 'Aguardando revisão'),
+        ('1', 'Em revisão'),
+        ('2', 'Aguardando correções'),
+        ('3', 'Aprovado'),
+        ('4', 'Regeitado')
+    )
+
+    status_do_resumo = models.CharField(
+        'Aguandando revisão', max_length=1,
+        choices=ESCOLHA_STATUS,
+        default='0',
+        blank=True,
+    )
+
     def __unicode__(self):
         return self.titulo
