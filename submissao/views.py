@@ -32,7 +32,6 @@ def nova_submissao(request):
 
         if sub_form.is_valid():
             sub = sub_form.save()
-            #membro.set_password(membro.password)
             sub.save()
             return HttpResponseRedirect('/')
 
