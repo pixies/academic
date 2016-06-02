@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 class MembroProfile(models.Model):
+
     user = models.OneToOneField(User)
     avatar = models.ImageField(upload_to='profile_images', blank=True)
     cpf = models.CharField(max_length=11, blank=True, unique=True)
