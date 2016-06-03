@@ -125,6 +125,7 @@ def index(request):
 
     membro = 'AnonymousUser'
     context = RequestContext(request)
+
     if request.user.is_authenticated():
         membro = MembroProfile.objects.filter(user__username=request.user).latest('user').user
         usr = MembroProfile.objects.filter(user__username=request.user)
@@ -132,20 +133,20 @@ def index(request):
         #print usr.first()
         context["membro"] = membro
 
-        if membro.membroprofile.status_inscricao == 'inativo':
-            context["submissao"] = 'Aguarde!'
-            return render_to_response('profile/index.html', context)
-        else:
-            if len(submissao.values()) > 0:
-                context["submissao"] = submissao.values()[0]
-                print context
-                return render_to_response('profile/index.html', context)
-            else:
-                context["submissao"] = submissao
-                return render_to_response('profile/index.html', context)
+#        if membro.membroprofile.status_inscricao == 'inativo':
+#            context["submissao"] = 'Aguarde!'
+#            return render_to_response('profile/index.html', context)
+#        else:
+#            if len(submissao.values()) > 0:
+#                context["submissao"] = submissao.values()[0]
+#                print context
+#                return render_to_response('profile/index.html', context)
+#            else:
+#                context["submissao"] = submissao
+#                return render_to_response('profile/index.html', context)
 
-    else:
-        context["membro"] = membro
+#    else:
+#        context["membro"] = membro
 
         return render_to_response('profile/index.html', context)
     #return HttpResponseRedirect('/register/')
