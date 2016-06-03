@@ -2,6 +2,9 @@
 {% block content %}
   <div class="container">
     {% if user.is_authenticated %}
+
+        {{ membro }}
+
       <h1>Ola, <strong>{{ membro.membroprofile }}</strong></h1>
       <h3>
       {% if membro.membroprofile.status_inscricao == 'inativo' %}
