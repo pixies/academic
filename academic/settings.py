@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'membro_profile',
     'bootstrap3',
     'submissao',
+    'django_admin_bootstrapped',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -85,4 +86,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = '/home/cleyton/html/academic/static'
 TEMPLATE_DIRS = (os.path.join(BASE_DIR,  'templates'),)
