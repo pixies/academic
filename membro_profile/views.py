@@ -149,4 +149,5 @@ def index(request):
 #        context["membro"] = membro
 
         return render_to_response('profile/index.html', context)
-    #return HttpResponseRedirect('/register/')
+
+    return render_to_response('profile/index.html', context)
