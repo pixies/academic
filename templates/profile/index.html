@@ -1,9 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
   <div class="container">
-    {{ membro }}
     {% if user.is_authenticated %}
-
       <h1>Ola, <strong>{{ membro.membroprofile }}</strong></h1>
       <h3>
       {% if membro.membroprofile.status_inscricao == 'inativo' %}
@@ -18,9 +16,27 @@
       </h3>
       <div class="jumbotron">
         {% if membro.membroprofile.status_inscricao == 'inativo' %}
-          <a class="btn btn-danger btn-lg" href="#" role="button">
-            {{ "Aguarde..." }}
-          </a>
+
+            <div class="row">
+                <!-- <div class="col-lg-4">
+                   <a class="btn btn-danger btn-lg" href="#" role="button">
+                       {{ "Aguarde..." }}
+                   </a>
+                </div> -->
+                <div class="col-lg-12">
+                    <h2>Instruções para comprovação de inscrição.</h2>
+                    <p>Uma cópia do comprovante de depósito ou transferência deverá ser enviada em anexo para o e-mail scsemiarido@gmail.com, com o assunto “SEU NOME – COMPROVANTE DE PAGAMENTO” para identificar e registrar o pagamento. No e-mail devem constar:</p>
+                    <ul>
+                    <li>Nome do participante;</li>
+                    <li>Login;</li>
+                    <li>CPF do participante (Passaporte ou visto, caso seja estrangeiro morando no Brasil);</li>
+                    <li>Comprovante de depósito ou transferência em anexo (não receberemos comprovantes via fax);</li>
+                    <li>Comprovante de matricula para estudantes de Graduação ou Pós-graduação.</li>
+
+                    </ul>
+                </div>
+            </div>
+
         {% else %}
           {% if submissao %}
             <table class="table table-striped">
@@ -47,6 +63,10 @@
         {% endif %}
       </p>
     </div>
+
+
+
+
   {% else %}
     <div class="row">
       <div class="col-lg-3"></div>
