@@ -19,5 +19,5 @@ urlpatterns = patterns('',
     url(r'^profile/$', views.profile, name='profile'),
     url(r'^profile/edit/$', views.edit_profile, name='edit_profile'),
     url(r'^logout/$', views.user_logout, name='logout'),
-    url(r'^submissao/$', nova_submissao, name='submissao'),
-) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    #url(r'^submissao/$', nova_submissao, name='submissao'),
+) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
