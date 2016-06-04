@@ -39,8 +39,8 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'membro_profile',
     'bootstrap3',
-    'submissao',
     'django_admin_bootstrapped',
+#    'submissao',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -87,4 +87,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = '/home/cleyton/html/academic/static'
+
+#MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = '/home/cleyton/html/academic/media'
+MEDIA_URL = '/media/'
+
 TEMPLATE_DIRS = (os.path.join(BASE_DIR,  'templates'),)
