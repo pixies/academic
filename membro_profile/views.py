@@ -6,6 +6,7 @@ from membro_profile.forms import MembroForm, MembroProfileForm, EditProfileForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from membro_profile.models import MembroProfile
+from django.core.urlresolvers import reverse
 
 def some_view(request):
     if not request.user.is_authenticated():
@@ -83,7 +84,8 @@ def user_logout(request):
 @login_required
 def profile(request):
     context = RequestContext(request)
-    usuario = User.objects.get(username=context['user'])
+    print context
+    usuario = User.objects.get(username=request.user)
     membro = MembroProfile.objects.get(user=usuario)
 
     if membro:
@@ -91,7 +93,6 @@ def profile(request):
     else:
         return HttpResponse('Inscrição não encontrado')
 
-from django.core.urlresolvers import reverse
 
 @login_required
 def edit_profile(request):
@@ -119,7 +120,7 @@ def edit_profile(request):
 
     return render(request, 'profile/editar.html', context)
 
-from submissao.models import Submissao
+#from submissao.models import Submissao
 
 def index(request):
 
@@ -129,25 +130,10 @@ def index(request):
     if request.user.is_authenticated():
         membro = MembroProfile.objects.filter(user__username=request.user).latest('user').user
         usr = MembroProfile.objects.filter(user__username=request.user)
-        submissao = Submissao.objects.filter(autor=usr.first())
+        #submissao = Submissao.objects.filter(autor=usr.first())
         #print usr.first()
         context["membro"] = membro
 
-#        if membro.membroprofile.status_inscricao == 'inativo':
-#            context["submissao"] = 'Aguarde!'
-#            return render_to_response('profile/index.html', context)
-#        else:
-#            if len(submissao.values()) > 0:
-#                context["submissao"] = submissao.values()[0]
-#                print context
-#                return render_to_response('profile/index.html', context)
-#            else:
-#                context["submissao"] = submissao
-#                return render_to_response('profile/index.html', context)
-
-#    else:
-#        context["membro"] = membro
-
         return render_to_response('profile/index.html', context)
-
-    return render_to_response('profile/index.html', context)
+    else:
+        return render_to_response('profile/index.html', context)
