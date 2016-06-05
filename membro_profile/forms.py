@@ -11,12 +11,11 @@ class MembroForm(forms.ModelForm):
         fields = ('first_name','last_name','username', 'email','password')
 
         widgets = {
-            'first_name': forms.TextInput(attrs={'placeholder': 'Ex. Fulano de Tau'}),
-            'last_name': forms.TextInput(attrs={'placeholder': 'Ex. da Silva Sauro'}),
+            'first_name': forms.TextInput(attrs={'placeholder': 'Ex.: Fulano de Tau'}),
+            'last_name': forms.TextInput(attrs={'placeholder': 'Ex.: da Silva Sauro'}),
+            'username': forms.TextInput(attrs={'placeholder': 'Ex.: fulanodetau'}),
             'email': forms.TextInput(attrs={'placeholder': 'E-Mail'}),
-            'username': forms.TextInput(attrs={'placeholder': 'username'}),
-            'email': forms.TextInput(attrs={'placeholder': 'E-Mail'}),
-            'password': forms.TextInput(attrs={'placeholder': 'Senha'}),
+            #'password': forms.PasswordInput(attrs={'placeholder': 'Senha'}),
         }
 
 
@@ -26,7 +25,7 @@ class MembroProfileForm(forms.ModelForm):
         fields = ('cpf','tipo_de_inscricao','avatar')
 
         widgets = {
-            'cpf': forms.TextInput(attrs={'placeholder': 'Use apenas número.'}),
+            'cpf': forms.TextInput(attrs={'placeholder': 'Use apenas números.'}),
             'email': forms.TextInput(attrs={'placeholder': 'E-Mail'}),
         }
 
