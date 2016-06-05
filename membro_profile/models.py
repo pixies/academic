@@ -3,6 +3,8 @@ from datetime import datetime
 from django.db import models
 from django.contrib.auth.models import User
 
+#from submissao.models import Submissao
+
 # Create your models here.
 class MembroProfile(models.Model):
 
@@ -20,6 +22,7 @@ class MembroProfile(models.Model):
         ('profi', 'Profissional'),
         ('profi-socio', 'Profissional Sócio'),
     )
+
     tipo_de_inscricao = models.CharField('tipo de inscrição',max_length=50,
                                      choices=TIPO_DE_INSCRICAO,
                                      default='estudante')
@@ -39,9 +42,3 @@ class MembroProfile(models.Model):
         return self.user.first_name
 
 
-class ComprovantePagamento(models.Model):
-    comprovante = models.ImageField(upload_to='comprovantes')
-    membro = models.OneToOneField(MembroProfile)
-
-    def __unicode__(self):
-        return self.membro
