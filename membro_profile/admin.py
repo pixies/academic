@@ -5,6 +5,7 @@ from membro_profile.models import MembroProfile, ComprovantePagamento
 class MembroProfileAdmin(admin.ModelAdmin):
 
     list_display = ('user','cpf', 'status_inscricao','tipo_de_inscricao','data_de_cadastro')
+    list_filter = ['status_inscricao','tipo_de_inscricao']
 
 admin.site.register(MembroProfile, MembroProfileAdmin)
 #admin.site.register(ComprovantePagamento)
