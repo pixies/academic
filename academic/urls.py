@@ -1,7 +1,6 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from membro_profile import views
-from submissao.views import nova_submissao
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -19,5 +18,5 @@ urlpatterns = patterns('',
     url(r'^profile/$', views.profile, name='profile'),
     url(r'^profile/edit/$', views.edit_profile, name='edit_profile'),
     url(r'^logout/$', views.user_logout, name='logout'),
-    #url(r'^submissao/$', nova_submissao, name='submissao'),
+    url(r'^submissao/', include("submissao.urls")),
 ) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

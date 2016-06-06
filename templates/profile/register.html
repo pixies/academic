@@ -21,17 +21,20 @@
                 {{ membro_form.last_name }}
               </div>
               <div class="form-group">
-                <label >Usuário</label><br/>
+                <label >Login</label><br/>
                 {{ membro_form.username }}
-                <span class="help-block">Use apenas uma palavra sem acentuação e em minúsculo. Ex.: joaodasilva.</span>
+                  {{ membro_form.username.errors }}
+                <span class="help-block"><strong>Este é o seu login. </strong>Use apenas uma palavra sem acentuação e em minúsculo. Ex.: joaodasilva.</span>
               </div>
               <div class="form-group">
                 <label >E-mail</label><br/>
                 {{ membro_form.email }}
+                {{ membro_form.email.errors }}
               </div>
               <div class="form-group">
                 <label >Senha</label><br/>
                 {{ membro_form.password }}
+                {{ membro_form.password.errors }}
               </div>
               <div class="form-group">
                 <label >CPF</label><br/>

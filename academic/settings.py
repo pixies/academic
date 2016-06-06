@@ -40,7 +40,7 @@ INSTALLED_APPS = (
     'membro_profile',
     'bootstrap3',
     'django_admin_bootstrapped',
-#    'submissao',
+    'submissao',
 )
 
 MIDDLEWARE_CLASSES = (
