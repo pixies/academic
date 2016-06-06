@@ -5,8 +5,11 @@ from django.shortcuts import render_to_response, RequestContext, render
 from membro_profile.forms import MembroForm, MembroProfileForm, EditProfileForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from membro_profile.models import MembroProfile
 from django.core.urlresolvers import reverse
+
+from membro_profile.models import MembroProfile
+from submissao.models import Submissao
+
 
 def some_view(request):
     if not request.user.is_authenticated():
@@ -122,18 +125,24 @@ def edit_profile(request):
 
 #from submissao.models import Submissao
 
+
+
+
 def index(request):
 
-    membro = 'AnonymousUser'
     context = RequestContext(request)
+    print str(request.user) == 'AnonymousUser'
+    if str(request.user) == 'AnonymousUser':
+        return render_to_response('profile/login.html', context)
+    else:
+        queryset = Submissao.objects.filter(autor_id=request.user.membroprofile.id or None)
 
     if request.user.is_authenticated():
         membro = MembroProfile.objects.filter(user__username=request.user).latest('user').user
-        usr = MembroProfile.objects.filter(user__username=request.user)
-        #submissao = Submissao.objects.filter(autor=usr.first())
-        #print usr.first()
+
         context["membro"] = membro
+        context['lista_resumos'] = queryset
 
         return render_to_response('profile/index.html', context)
     else:
-        return render_to_response('profile/index.html', context)
+        return render_to_response('profile/login.html', context)
