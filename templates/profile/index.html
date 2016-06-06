@@ -12,12 +12,13 @@
         {% else %}
           Você já pode enviar seu resumo. <strong>Bom trabalho!</strong>
         {% endif %}
+
       {% endif %}
       </h3>
       <div class="jumbotron">
 
 
-        {% if membro.membroprofile.status_inscricao == 'inativo' %}
+          {%if membro.membroprofile.status_inscricao == 'inativo' %}
 
             <div class="row">
                 <!-- <div class="col-lg-4">
@@ -41,43 +42,50 @@
 
         {% else %}
 
+            {% if lista_resumos.exists %}
+                {% for resumo in lista_resumos %}
 
-          {% if submissao %}
+                    <div class="list-group">
+                  <a href="#" class="list-group-item active">
+                    <h3 class="list-group-item-heading">Resumo</h3>
+                      <span class="badge">{{ resumo.get_status_da_submissao_display }}</span>
+                    <p class="list-group-item-text">Abaixo descrição dos dados da sua submissão</p>
+                  </a>
+
+                  <a href="#" class="list-group-item">
+                    <h3 class="list-group-item-heading">Título</h3>
+                    <span class="list-group-item-text">{{ resumo.titulo }}</span>
+                  </a>
+
+                  <a href="#" class="list-group-item">
+                    <h3 class="list-group-item-heading">Título em Inglês</h3>
+                    <span class="list-group-item-text">{{ resumo.titulo_eng }}</span>
+                  </a>
+
+                  <a href="#" class="list-group-item">
+                    <h3 class="list-group-item-heading">Área de interesse</h3>
+                    <span class="list-group-item-text">{{ resumo.get_area_de_interesse_display }}</span>
+                  </a>
+                  <a href="{{ resumo.arquivo.url }}" class="list-group-item">
+                    <h3 class="list-group-item-heading">Seu arquivo</h3>
+                    <span class="list-group-item-text">{{ resumo.arquivo.name }}</span>
+                  </a>
 
 
-
-            <table class="table table-striped">
-              <tr>
-                <th>Título</th>
-                <th>Título em Inglês</th>
-                <th>Área de Interesse</th>
-                <th>Resumo</th>
-                <th>Autor</th>
-              </tr>
-              <tr>
-                <td class="info">{{ submissao.titulo }}</td>
-                <td class="info">{{ submissao.titulo_eng }}</td>
-                <td class="info">{{ submissao.area }}</td>
-                <td class="info">{{ submissao.resumo }}</td>
-                <td class="info"> {{ membro.first_name }} {{ membro.last_name }}</td>
-              </tr>
-            </table>
-
-
-
-          {% else %}
-
-            <div class="row">
-                <div class="col-lg-2 col-xs-12 col-sm-12 col-md-12"></div>
-
-                <div class="col-lg-8 col-xs-12 col-sm-12 col-md-12 col-lg-offset-4">
-                   <a class="btn btn-primary btn-lg" href="/submissao/" role="button">Adicione seu resumo</a>
                 </div>
 
-                <div class="col-lg-2 col-xs-12 col-sm-12 col-md-12"></div>
-            </div>
+                {% endfor %}
+            {% else %}
 
-          {% endif %}
+
+                <div class="panel panel-default">
+                  <div class="panel-body">
+                    <h3>Você, ainda não submeteu seu resumo.<a href="submissao/adcionar/"><span class="label label-danger">Envie agora</span></a></h3>
+                  </div>
+                </div>
+
+
+            {% endif %}
         {% endif %}
       </p>
     </div>
@@ -86,6 +94,7 @@
 
 
   {% else %}
+
     <div class="row">
       <div class="col-lg-3"></div>
       <div class="col-lg-3">
@@ -109,5 +118,6 @@
       </div>
       <div class="col-lg-3"></div>
     </div>
-  {% endif %}
+
+    {% endif %}
 {% endblock content %}
