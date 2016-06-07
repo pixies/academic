@@ -1,0 +1,5 @@
+Django==1.8.13
+django-admin-bootstrapped==2.5.7
+django-bootstrap3==7.0.1
+gunicorn==19.6.0
+Pillow==3.2.0
