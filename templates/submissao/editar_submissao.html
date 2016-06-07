@@ -1,0 +1,43 @@
+{%  extends "base.html" %}
+
+{% block content %}
+    <div class="container">
+        <div class="jumbotron">
+            <h2></h2>
+                <div class="list-group">
+                            <form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
+
+
+                  <a href="#" class="list-group-item active">
+                    <h3 class="list-group-item-heading">Editando Resumo</h3>
+                      <span class="badge">{{ resumo.get_status_da_submissao_display }}</span>
+                    <p class="list-group-item-text">Abaixo descrição dos dados da sua submissão</p>
+                  </a>
+
+                  <a href="#" class="list-group-item">
+                    <h3 class="list-group-item-heading">Título</h3>
+                    <span class="list-group-item-text">{{ form.titulo }}</span>
+                  </a>
+
+                  <a href="#" class="list-group-item">
+                    <h3 class="list-group-item-heading">Título em Inglês</h3>
+                    <span class="list-group-item-text">{{ form.titulo_eng }}</span>
+                  </a>
+
+                  <a href="#" class="list-group-item">
+                    <h3 class="list-group-item-heading">Área de interesse</h3>
+                    <span class="list-group-item-text">{{ form.area_de_interesse }}</span>
+                  </a>
+                  <a href="{{ resumo.arquivo.url }}" class="list-group-item">
+                    <h3 class="list-group-item-heading">Seu arquivo</h3>
+                    <span class="list-group-item-text">{{ form.arquivo }}</span>
+                  </a>
+
+                </div>
+
+
+        </div>
+    </div>
+
+
+{% endblock %}
