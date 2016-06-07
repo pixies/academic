@@ -37,15 +37,33 @@
           {% if user.is_authenticated %}
             <ul class="nav navbar-nav navbar-right">
               <li><a href="/">Início<span class="sr-only"></span></a></li>
-              <li><a href="/profile/">Perfil<span class="sr-only">(current)</span></a></li>
-              <li><a href="/profile/edit/">Editar<span class="sr-only">(current)</span></a></li>
-              <li class="active"><a href="/logout/">Sair</a></li>
+                <li class="dropdown">
+                <a href="#" class="" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Subimissão<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="/submissao/listar">Listar Resumo</a></li>
+                  <li role="separator" class="divider"></li>
+                  <li><a href="/submissao/adcionar">Adcionar Resumo</a></li>
+                  <li><a href="/submissao/editar">Editar</a></li>
+                </ul>
+              </li>
+
+              <li class="dropdown">
+                <a href="#" class="" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Perfil <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="/profile">Meu perfil</a></li>
+                  <li><a href="/profile/edit">Editar</a></li>
+                  <li role="separator" class="divider"></li>
+                  <li><a href="/logout">Sair</a></li>
+                </ul>
+              </li>
+
             </ul>
           {% else %}
             <ul class="nav navbar-nav navbar-right">
               <li class="active"><a href="/login/">Entrar<span class="sr-only">(current)</span></a></li>
               <li><a href="/register/">Registre-se</a></li>
             </ul>
+
           {% endif %}
           </div><!-- /.navbar-collapse -->
           </div><!-- /.container-fluid -->
