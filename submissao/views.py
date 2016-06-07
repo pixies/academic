@@ -5,10 +5,12 @@ from submissao.forms import SubmissaoForm
 # Create your views here.
 def adcionar_submissao(request):
     form = SubmissaoForm(request.POST or None, request.FILES or None)
-#    submissao = Submissao.objects.filter(autor_id=request.user.membroprofile.id)
-    submissao = False
+    submissao = Submissao.objects.filter(autor_id=request.user.membroprofile.id)
+    #submissao = False
 
-    if submissao == False:
+    print submissao
+
+    if len(submissao) < 1:
         if form.is_valid():
             instance = form.save(commit=False)
             print instance
@@ -44,6 +46,34 @@ def detalhes_submissao(request):
     return render(request, 'submissao/index.html',context)
 
 def editar_submissao(request):
+
+
+    submissao = Submissao.objects.filter(autor_id=request.user.membroprofile.id)
+    form = SubmissaoForm(request.POST or None, request.FILES or None, instance=submissao[0])
+    #submissao = False
+
+    print submissao
+
+    if submissao:
+        if form.is_valid():
+            instance = form.save(commit=False)
+            print instance
+            instance.save()
+            return HttpResponseRedirect('/')
+    else:
+        return HttpResponseRedirect('/submissao')
+
+    context = {
+        'form': form
+    }
+    return render(request, 'submissao/editar_submissao.html', context)
+
+
+
+
+
+
+'''
     queryset = Submissao.objects.filter(autor_id=request.user.membroprofile.id)
 
     if request.user.is_authenticated():
@@ -65,7 +95,7 @@ def editar_submissao(request):
         }
 
     return render(request, 'submissao/index.html', context)
-
+'''
 
 
 
