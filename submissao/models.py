@@ -21,7 +21,8 @@ class Submissao(models.Model):
     )
 
     area_de_interesse = models.CharField(
-        'Status', max_length='1',
+        'Status',
+        max_length=1,
         choices=ESCOLHA_AREA,
         default='1',
         blank=True,

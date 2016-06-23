@@ -22,16 +22,14 @@ class MembroProfile(models.Model):
         ('profi', 'Profissional'),
         ('profi-socio', 'Profissional Sócio'),
     )
-
     tipo_de_inscricao = models.CharField('tipo de inscrição',max_length=50,
                                      choices=TIPO_DE_INSCRICAO,
                                      default='estudante')
-
+    
     STATUS_DE_INSCRICAO = (
         ('ativo', 'Ativo'),
         ('inativo', 'Inativo'),
     )
-
     status_inscricao = models.CharField('Status', max_length=11,
                                          choices=STATUS_DE_INSCRICAO,
                                          default='inativo',
@@ -39,6 +37,6 @@ class MembroProfile(models.Model):
                                         )
 
     def __unicode__(self):
-        return self.user.first_name
+        return self.user
 
 

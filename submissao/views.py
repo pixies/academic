@@ -7,10 +7,12 @@ def adcionar_submissao(request):
     form = SubmissaoForm(request.POST or None, request.FILES or None)
     submissao = Submissao.objects.filter(autor_id=request.user.membroprofile.id)
     #submissao = False
+    print(submissao)
+    print(len(submissao))
 
-    print (submissao)
+    print (form)
 
-    if len(submissao) < 1:
+    if len(submissao) < 2:
         if form.is_valid():
             instance = form.save(commit=False)
             print (instance)
@@ -20,8 +22,9 @@ def adcionar_submissao(request):
         return HttpResponseRedirect('/submissao')
 
     context = {
-        'form': form
+        'form': form,
     }
+
     return render(request, 'submissao/nova_submissao.html', context)
 
 def listar_submissao(request):
@@ -51,8 +54,6 @@ def editar_submissao(request):
     submissao = Submissao.objects.filter(autor_id=request.user.membroprofile.id)
     form = SubmissaoForm(request.POST or None, request.FILES or None, instance=submissao[0])
     #submissao = False
-
-    print (submissao)
 
     if submissao:
         if form.is_valid():
