@@ -42,7 +42,7 @@ def register(request):
             membro_profile.save()
             registered = True
         else:
-            print membro_form.errors, membro_profile_form.errors
+            print (membro_form.errors, membro_profile_form.errors)
     else:
         membro_form = MembroForm()
         membro_profile_form = MembroProfileForm()
@@ -69,7 +69,7 @@ def membro_login(request):
             else:
                 return HttpResponse('Sua conta ainda não foi liberada.')
         else:
-            print "Login e senha invalidos: {0}, {1}".format(username, password)
+            print ("Login e senha invalidos: {0}, {1}".format(username, password))
             return HttpResponse("Login ou Senha, Invalidos")
     else:
 #        return render_to_response('profile/404.html', {}, context)
@@ -87,7 +87,7 @@ def user_logout(request):
 @login_required
 def profile(request):
     context = RequestContext(request)
-    print context
+    print (context)
     usuario = User.objects.get(username=request.user)
     membro = MembroProfile.objects.get(user=usuario)
 
@@ -131,7 +131,7 @@ def edit_profile(request):
 def index(request):
 
     context = RequestContext(request)
-    print str(request.user) == 'AnonymousUser'
+    print (str(request.user) == 'AnonymousUser')
     if str(request.user) == 'AnonymousUser':
         return render_to_response('profile/login.html', context)
     else:

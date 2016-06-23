@@ -8,12 +8,12 @@ def adcionar_submissao(request):
     submissao = Submissao.objects.filter(autor_id=request.user.membroprofile.id)
     #submissao = False
 
-    print submissao
+    print (submissao)
 
     if len(submissao) < 1:
         if form.is_valid():
             instance = form.save(commit=False)
-            print instance
+            print (instance)
             instance.save()
             return HttpResponseRedirect('/')
     else:
@@ -52,12 +52,12 @@ def editar_submissao(request):
     form = SubmissaoForm(request.POST or None, request.FILES or None, instance=submissao[0])
     #submissao = False
 
-    print submissao
+    print (submissao)
 
     if submissao:
         if form.is_valid():
             instance = form.save(commit=False)
-            print instance
+            print (instance)
             instance.save()
             return HttpResponseRedirect('/')
     else:
