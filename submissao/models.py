@@ -41,5 +41,5 @@ class Submissao(models.Model):
         blank=True,
     )
 
-    def __unicode__(self):
+    def __str__(self):
         return self.titulo

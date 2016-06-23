@@ -1,4 +1,5 @@
 #-*- encoding: utf-8 -*-
+
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render_to_response, RequestContext, render
